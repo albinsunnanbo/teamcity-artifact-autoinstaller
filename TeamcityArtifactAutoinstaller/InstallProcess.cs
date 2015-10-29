@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace TeamcityArtifactAutoinstaller
 {
@@ -90,6 +87,10 @@ namespace TeamcityArtifactAutoinstaller
                         var unzipDir = string.Format("{0}_{1}", project.TeamCityProjectId, versionString);
                         var zipPath = Path.Combine(project.InstallPath, zipFileName);
                         var unzipDirPath = Path.Combine(project.InstallPath, unzipDir);
+                        if (!Directory.Exists(unzipDirPath))
+                        {
+                            Directory.CreateDirectory(unzipDirPath);
+                        }
                         wc.DownloadFile(artifactUrl, zipPath);
                         timeStats.AppendLine(sw.Elapsed.ToString() + " file downloaded");
 
@@ -103,8 +104,18 @@ namespace TeamcityArtifactAutoinstaller
                         log.InfoFormat("File unzipped to {0}", unzipDirPath);
 
                         ProcessStartInfo startInfo = new ProcessStartInfo();
-                        startInfo.WorkingDirectory = project.InstallPath;
-                        startInfo.FileName = Path.Combine(project.InstallPath, project.InstallCommand);
+
+                        // Use install.bat contained in zip archive as a starting point for the installation.
+                        if (project.ArchiveContainsInstallCommand)
+                        {
+                            startInfo.WorkingDirectory = unzipDirPath;
+                        }
+                        else
+                        {
+                            startInfo.WorkingDirectory = project.InstallPath;                            
+                        }
+                        startInfo.FileName = Path.Combine(startInfo.WorkingDirectory, project.InstallCommand);
+
                         startInfo.Arguments = unzipDir;
                         startInfo.RedirectStandardOutput = true;
                         startInfo.UseShellExecute = false;

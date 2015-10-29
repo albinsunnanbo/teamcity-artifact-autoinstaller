@@ -46,6 +46,7 @@ namespace TeamcityArtifactAutoinstaller.Properties {
               <TeamCityProjectId>project1</TeamCityProjectId>
               <InstallPath>c:\installfiles</InstallPath>
               <InstallCommand>install1.bat</InstallCommand>
+              <ArchiveContainsInstallCommand>false</ArchiveContainsInstallCommand>
             </TeamcityProjectConfiguration>
             <TeamcityProjectConfiguration>
               <TeamCityBaseUrl>https://myteamcirtyserver.com</TeamCityBaseUrl>
@@ -54,6 +55,7 @@ namespace TeamcityArtifactAutoinstaller.Properties {
               <TeamCityProjectId>project2</TeamCityProjectId>
               <InstallPath>c:\installfiles</InstallPath>
               <InstallCommand>install2.bat</InstallCommand>
+              <ArchiveContainsInstallCommand>false</ArchiveContainsInstallCommand>
             </TeamcityProjectConfiguration>
           </ArrayOfTeamcityProjectConfiguration>
         ")]
