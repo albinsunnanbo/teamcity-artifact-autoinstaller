@@ -37,40 +37,43 @@ namespace TeamcityArtifactAutoinstaller.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("This mail was sent from TeamcityArtifactInstaller")]
+        public string MailBody {
+            get {
+                return ((string)(this["MailBody"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"
           <ArrayOfTeamcityProjectConfiguration xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
             <TeamcityProjectConfiguration>
               <TeamCityBaseUrl>https://myteamcirtyserver.com</TeamCityBaseUrl>
-              <TeamCityUserName>username1</TeamCityUserName>
-              <TeamCityPassword>password1</TeamCityPassword>
               <TeamCityProjectId>project1</TeamCityProjectId>
+              <TeamCityUserName>username</TeamCityUserName>
+              <TeamCityPassword>password</TeamCityPassword>
               <InstallPath>c:\installfiles</InstallPath>
               <InstallCommand>install1.bat</InstallCommand>
-              <ArchiveContainsInstallCommand>false</ArchiveContainsInstallCommand>
+              <VerifyUrl>https://project1.com/index.html</VerifyUrl>
+              <TimeOutMinutes>5</TimeOutMinutes>
             </TeamcityProjectConfiguration>
             <TeamcityProjectConfiguration>
               <TeamCityBaseUrl>https://myteamcirtyserver.com</TeamCityBaseUrl>
-              <TeamCityUserName>username2</TeamCityUserName>
-              <TeamCityPassword>password2</TeamCityPassword>
               <TeamCityProjectId>project2</TeamCityProjectId>
+              <TeamCityUserName>username</TeamCityUserName>
+              <TeamCityPassword>password</TeamCityPassword>
               <InstallPath>c:\installfiles</InstallPath>
+              <InstallCommandRelativePath>installfiles</InstallCommandRelativePath>
               <InstallCommand>install2.bat</InstallCommand>
-              <ArchiveContainsInstallCommand>false</ArchiveContainsInstallCommand>
+              <VerifyUrl>https://project2.com/index.html</VerifyUrl>
+              <TimeOutMinutes>99</TimeOutMinutes>
             </TeamcityProjectConfiguration>
           </ArrayOfTeamcityProjectConfiguration>
         ")]
         public global::System.Collections.Generic.List<TeamcityProjectConfiguration> TeamcityProjects {
             get {
                 return ((global::System.Collections.Generic.List<TeamcityProjectConfiguration>)(this["TeamcityProjects"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("This mail was sent from TeamcityArtifactInstaller")]
-        public string MailBody {
-            get {
-                return ((string)(this["MailBody"]));
             }
         }
     }

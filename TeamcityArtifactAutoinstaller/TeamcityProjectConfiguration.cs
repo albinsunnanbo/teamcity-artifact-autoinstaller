@@ -22,6 +22,8 @@ namespace TeamcityArtifactAutoinstaller
 
         public string VerifyUrl { get; set; }
 
-        public bool ArchiveContainsInstallCommand { get; set; }
+        public string InstallCommandRelativePath { get; set; }
+
+        public int? TimeOutMinutes { get; set; }
     }
 }

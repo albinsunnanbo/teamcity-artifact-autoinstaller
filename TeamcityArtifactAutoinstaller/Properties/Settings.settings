@@ -9,30 +9,35 @@
   &lt;string&gt;email2@company.com&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
+    <Setting Name="MailBody" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">This mail was sent from TeamcityArtifactInstaller</Value>
+    </Setting>
     <Setting Name="TeamcityProjects" Type="System.Collections.Generic.List&lt;TeamcityProjectConfiguration&gt;" Scope="Application">
       <Value Profile="(Default)">
           &lt;ArrayOfTeamcityProjectConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
             &lt;TeamcityProjectConfiguration&gt;
               &lt;TeamCityBaseUrl&gt;https://myteamcirtyserver.com&lt;/TeamCityBaseUrl&gt;
-              &lt;TeamCityUserName&gt;username1&lt;/TeamCityUserName&gt;
-              &lt;TeamCityPassword&gt;password1&lt;/TeamCityPassword&gt;
               &lt;TeamCityProjectId&gt;project1&lt;/TeamCityProjectId&gt;
+              &lt;TeamCityUserName&gt;username&lt;/TeamCityUserName&gt;
+              &lt;TeamCityPassword&gt;password&lt;/TeamCityPassword&gt;
               &lt;InstallPath&gt;c:\installfiles&lt;/InstallPath&gt;
               &lt;InstallCommand&gt;install1.bat&lt;/InstallCommand&gt;
+              &lt;VerifyUrl&gt;https://project1.com/index.html&lt;/VerifyUrl&gt;
+              &lt;TimeOutMinutes&gt;5&lt;/TimeOutMinutes&gt;
             &lt;/TeamcityProjectConfiguration&gt;
             &lt;TeamcityProjectConfiguration&gt;
               &lt;TeamCityBaseUrl&gt;https://myteamcirtyserver.com&lt;/TeamCityBaseUrl&gt;
-              &lt;TeamCityUserName&gt;username2&lt;/TeamCityUserName&gt;
-              &lt;TeamCityPassword&gt;password2&lt;/TeamCityPassword&gt;
               &lt;TeamCityProjectId&gt;project2&lt;/TeamCityProjectId&gt;
+              &lt;TeamCityUserName&gt;username&lt;/TeamCityUserName&gt;
+              &lt;TeamCityPassword&gt;password&lt;/TeamCityPassword&gt;
               &lt;InstallPath&gt;c:\installfiles&lt;/InstallPath&gt;
+              &lt;InstallCommandRelativePath&gt;installfiles&lt;/InstallCommandRelativePath&gt;
               &lt;InstallCommand&gt;install2.bat&lt;/InstallCommand&gt;
+              &lt;VerifyUrl&gt;https://project2.com/index.html&lt;/VerifyUrl&gt;
+              &lt;TimeOutMinutes&gt;99&lt;/TimeOutMinutes&gt;
             &lt;/TeamcityProjectConfiguration&gt;
           &lt;/ArrayOfTeamcityProjectConfiguration&gt;
         </Value>
-    </Setting>
-    <Setting Name="MailBody" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">This mail was sent from TeamcityArtifactInstaller</Value>
     </Setting>
   </Settings>
 </SettingsFile>

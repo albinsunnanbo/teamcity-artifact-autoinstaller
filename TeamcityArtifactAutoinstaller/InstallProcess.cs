@@ -105,13 +105,14 @@ namespace TeamcityArtifactAutoinstaller
 
                         ProcessStartInfo startInfo = new ProcessStartInfo();
 
-                        // Use install.bat contained in zip archive as a starting point for the installation.
-                        if (project.ArchiveContainsInstallCommand)
+                        if (!string.IsNullOrEmpty(project.InstallCommandRelativePath))
                         {
-                            startInfo.WorkingDirectory = unzipDirPath;
+                            // Relative path from the unzip dir
+                            startInfo.WorkingDirectory = new DirectoryInfo(Path.Combine(unzipDirPath, project.InstallCommandRelativePath)).FullName;
                         }
                         else
                         {
+                            // Absolute path
                             startInfo.WorkingDirectory = project.InstallPath;
                         }
                         startInfo.FileName = Path.Combine(startInfo.WorkingDirectory, project.InstallCommand);
@@ -139,7 +140,7 @@ namespace TeamcityArtifactAutoinstaller
 
                             timeStats.AppendLine(sw.Elapsed.ToString() + " parsed install script output");
 
-                            var processTerminatedSuccessfully = process.WaitForExit(5 * 60 * 1000); // wait 5 minutes
+                            var processTerminatedSuccessfully = process.WaitForExit((project.TimeOutMinutes ?? 5) * 60 * 1000); // timeout, default 5 minutes
                             if (processTerminatedSuccessfully)
                             {
                                 process.WaitForExit(); // Force reading all output since that may not be read completely with the above overload
