@@ -112,7 +112,7 @@ namespace TeamcityArtifactAutoinstaller
                         }
                         else
                         {
-                            startInfo.WorkingDirectory = project.InstallPath;                            
+                            startInfo.WorkingDirectory = project.InstallPath;
                         }
                         startInfo.FileName = Path.Combine(startInfo.WorkingDirectory, project.InstallCommand);
 
@@ -204,10 +204,10 @@ namespace TeamcityArtifactAutoinstaller
                             {
                                 using (var errorAttachementStream = new MemoryStream(Encoding.UTF8.GetBytes(errorVerifyPage)))
                                 {
-                                    m.Attachments.Add(new Attachment(attachementStream, "install-log.txt"));
+                                    m.Attachments.Add(new Attachment(attachementStream, "install-log.txt", "plain/text"));
                                     if (!string.IsNullOrEmpty(errorVerifyPage))
                                     {
-                                        m.Attachments.Add(new Attachment(errorAttachementStream, "verify-fail-page-content.txt"));
+                                        m.Attachments.Add(new Attachment(errorAttachementStream, "verify-fail-page-content.txt", "plain/text"));
                                     }
 
                                     SmtpClient smtp = new SmtpClient();
@@ -237,7 +237,7 @@ namespace TeamcityArtifactAutoinstaller
                     {
                         lastCheckedVersion[project.TeamCityProjectId] = versionString;
                     }
-                    
+
                     log.Error("Installation failed with unknown exception", e);
                     Console.WriteLine("Installation failed with unknown exception");
                     Console.WriteLine(e.ToString());
