@@ -205,10 +205,10 @@ namespace TeamcityArtifactAutoinstaller
                             {
                                 using (var errorAttachementStream = new MemoryStream(Encoding.UTF8.GetBytes(errorVerifyPage)))
                                 {
-                                    m.Attachments.Add(new Attachment(attachementStream, "install-log.txt", "plain/text"));
+                                    m.Attachments.Add(new Attachment(attachementStream, "install-log.txt", "text/plain"));
                                     if (!string.IsNullOrEmpty(errorVerifyPage))
                                     {
-                                        m.Attachments.Add(new Attachment(errorAttachementStream, "verify-fail-page-content.txt", "plain/text"));
+                                        m.Attachments.Add(new Attachment(errorAttachementStream, "verify-fail-page-content.txt", "text/plain"));
                                     }
 
                                     SmtpClient smtp = new SmtpClient();
